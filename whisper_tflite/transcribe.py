@@ -174,7 +174,6 @@ class WhisperModel:
 
             previous_tokens = all_tokens[prompt_reset_since:]
 
-            print("Invoking interpreter ...", segment.shape, type(segment))
             self.model.set_tensor(self.input_tensor, np.expand_dims(segment, axis=0))
             self.model.invoke()
 
@@ -267,7 +266,6 @@ class WhisperModel:
             for segment in current_segments:
                 tokens = segment["tokens"]
                 text = tokenizer.tokenizer.decode(tokens)
-                print(text, segment["start"], segment["end"])
 
                 if segment["start"] == segment["end"] or not text.strip():
                     continue
